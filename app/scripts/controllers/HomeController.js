@@ -1,28 +1,29 @@
 angular.module('AngularScaffold.Controllers')
   .controller('HomeController', ['$scope', 'HomeService', '$sessionStorage', function ($scope, HomeService, $sessionStorage) {
-    	$scope.title = "Tabla de Usuarios."
-      $scope.users = [];
-      $scope.user = {};
+    	$scope.title = "Tabla de Propuestas de Trabajo."
+      $scope.jobs = [];
+      $scope.job = {};
 
 
-      $scope.getUsers = function(){
-        HomeService.GetUsers().then(function(response){
-          $scope.users = response.data;
+      $scope.getJobs = function(){
+        HomeService.GetJobs().then(function(response){
+          $scope.jobs = response.data;
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message)
         });
       }
 
-      $scope.postUser = function(){
-        var user = {name: $scope.user.name,
-                    username: $scope.user.username,
-                    password:  $scope.user.password,
-                    telephone:  $scope.user.telephone,
-                    status : $scope.user.status,
-                    scope: $scope.user.scope};
-        HomeService.PostUser(user).then(function(response){
-          alert("Posted to /users");
-          $scope.getUsers();
+      $scope.postJob = function(){
+        var job = {title : $scope.job.title,
+         description : $scope.job.description,
+         position : $scope.job.position,
+         info : $scope.job.info,
+         salary : $scope.job.salary,
+         cdate : $scope.job.cdate,
+         status : $scope.job.status};
+        HomeService.PostJob(job).then(function(response){
+          alert("Posted to /jobs");
+          $scope.getJobs();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
         });
@@ -30,32 +31,32 @@ angular.module('AngularScaffold.Controllers')
 
 
 
-      $scope.updateUser = function(item){
-        $scope.user=item;
-        HomeService.UpdateUser($scope.user,item._id).then(function(response){
-          alert("Update from /users");
-          $scope.getUsers();
+      $scope.updateJob = function(item){
+        $scope.job=item;
+        HomeService.UpdateJob($scope.job,item._id).then(function(response){
+          alert("Update from /jobs");
+          $scope.getJobs();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
         });
       }
 
-      $scope.deleteUser = function(item){
-        $scope.user=item;
-        HomeService.DeleteUser($scope.user,item._id).then(function(response){
-          alert("Delete from /users");
-          $scope.getUsers();
+      $scope.deleteJob = function(item){
+        $scope.job=item;
+        HomeService.DeleteJob($scope.job,item._id).then(function(response){
+          alert("Delete from /jobs");
+          $scope.getJobs();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
         });
       }
 
 
-      $scope.undeleteUser = function(item){
-        $scope.user=item;
-        HomeService.UndeleteUser($scope.user,item._id).then(function(response){
-          alert("Enable from /users");
-          $scope.getUsers();
+      $scope.undeleteJob = function(item){
+        $scope.job=item;
+        HomeService.UndeleteJob($scope.job,item._id).then(function(response){
+          alert("Enable from /jobs");
+          $scope.getJobs();
         }).catch(function(err){
           alert(err.data.error + " " + err.data.message);
         });
@@ -70,8 +71,6 @@ angular.module('AngularScaffold.Controllers')
         return $sessionStorage.currentUser && $sessionStorage.currentUser.scope == "regular";
       }
 
-      $scope.isNanny = function(){
-        return $sessionStorage.currentUser && $sessionStorage.currentUser.scope == "nanny";
-      }
+
 
   }]);

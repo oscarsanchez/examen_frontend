@@ -4,9 +4,9 @@
 
 </div>
   <div class="row">
-    <button type="button" class="btn btn-default" ng-click="getUsers()" ng-show="isRegular() || isAdmin() || isNanny()">Listar Usuarios</button>
+    <button type="button" class="btn btn-default" ng-click="getJobs()" ng-show="isRegular() || isAdmin() ">Listar Usuarios</button>
     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#createModal" data-whatever="create" ng-show="isAdmin()">Crear Usuario</button>
-    <label ng-show="isAdmin()" >Filter By Scope: <input ng-show="isAdmin()" ng-model="search.scope"></label><br>
+    <label ng-show="isAdmin()" >Filter By Scope: <input ng-show="isAdmin()" ng-model="search.cdate"></label><br>
   </div>
 
 
@@ -17,133 +17,155 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="exampleModalLabel">Crear Usuario</h4>
+          <h4 class="modal-title" id="exampleModalLabel">Crear Propuesta de Trabajo</h4>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="title">Nombre: </label>
-              <input type="text" name="nombre" ng-model="user.name" class="form-control">
+              <label for="title">Titulo: </label>
+              <input type="text" name="titulo" ng-model="job.title" class="form-control">
             </div>
             <div class="form-group">
-              <label for="year">Usuario: </label>
-              <input type="text" name="usuario" ng-model="user.username" class="form-control">
+              <label for="year">Descripcion: </label>
+              <input type="text" name="descripcion" ng-model="job.description" class="form-control">
             </div>
             <div class="form-group">
-              <label for="editorial">Contrasena: </label>
-              <input type="text" name="contrasena" ng-model="user.password" class="form-control">
+              <label for="editorial">Cargo: </label>
+              <input type="text" name="cargo" ng-model="job.position" class="form-control">
             </div>
             <div class="form-group">
-              <label for="author">Telefono: </label>
-              <input type="text" name="telefono" ng-model="user.telephone" class="form-control">
+              <label for="info">Contacto: </label>
+              <input type="text" name="contacto" ng-model="job.info" class="form-control">
             </div>
             <div class="form-group">
-              <label for="author">Estado: </label>
-              <input type="text" name="estado" ng-model="user.status" class="form-control">
+              <label for="info">Salario: </label>
+              <input type="text" name="salario" ng-model="job.salary" class="form-control">
             </div>
             <div class="form-group">
-              <label for="author">Scope: </label>
-              <input type="text" name="scope" ng-model="user.scope" class="form-control">
+              <label for="cdate">Fecha: </label>
+              <input type="text" name="fecha" ng-model="job.cdate" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="status">Estado: </label>
+              <input type="text" name="status" ng-model="job.status" class="form-control">
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-default" ng-click="postUser()">Guardar Usuario</button>
+          <button type="button" class="btn btn-default" ng-click="postJob()">Guardar Usuario</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" ng-show="isAdmin()">
+  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" ng-show="isAdmin()" >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="exampleModalLabel">Modificar Usuario</h4>
+          <h4 class="modal-title" id="exampleModalLabel">Modificar Propuesta de Trabajo</h4>
         </div>
         <div class="modal-body">
           <form>
             <div class="form-group">
-              <label for="title">Nombre: </label>
-              <input type="text" name="nombre" ng-model="user.name" class="form-control">
+              <label for="title">Titulo: </label>
+              <input type="text" name="titulo" ng-model="job.title" class="form-control">
             </div>
             <div class="form-group">
-              <label for="year">Usuario: </label>
-              <input type="text" name="usuario" ng-model="user.username" class="form-control">
+              <label for="year">Descripcion: </label>
+              <input type="text" name="descripcion" ng-model="job.description" class="form-control">
             </div>
             <div class="form-group">
-              <label for="editorial">Contrasena: </label>
-              <input type="text" name="contrasena" ng-model="user.password" class="form-control">
+              <label for="editorial">Cargo: </label>
+              <input type="text" name="cargo" ng-model="job.position" class="form-control">
             </div>
             <div class="form-group">
-              <label for="author">Telefono: </label>
-              <input type="text" name="telefono" ng-model="user.telephone" class="form-control">
+              <label for="info">Contacto: </label>
+              <input type="text" name="contacto" ng-model="job.info" class="form-control">
             </div>
             <div class="form-group">
-              <label for="author">Estado: </label>
-              <input type="text" name="estado" ng-model="user.status" class="form-control">
+              <label for="info">Salario: </label>
+              <input type="text" name="salario" ng-model="job.salary" class="form-control">
             </div>
             <div class="form-group">
-              <label for="author">Scope: </label>
-              <input type="text" name="scope" ng-model="user.scope" class="form-control">
+              <label for="cdate">Fecha: </label>
+              <input type="text" name="fecha" ng-model="job.cdate" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="status">Estado: </label>
+              <input type="text" name="status" ng-model="job.status" class="form-control">
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-default" ng-click="updateUser(user)">Modificar Usuario</button>
+          <button type="button" class="btn btn-default" ng-click="updateJob(job)">Actualizar Propuesta</button>
         </div>
       </div>
     </div>
   </div>
 
 
-      <div ng-show="isAdmin() ">
+
+
+
+
+      <div ng-show="isAdmin() || isRegular()">
         <div class="media-body">
-          <h3 class="media-heading">Usuarios Activos</h3>
+          <h3 class="media-heading">Trabajos Activos</h3>
         </div>
         <table class="table table-striped">
           <tr>
             <th>
-              Nombre
+              Titulo
             </th>
             <th>
-              Usuario
+              Descripcion
             </th>
             <th>
-              Telefono
+              Cargo
+            </th>
+            <th>
+              Contacto
+            </th>
+            <th>
+              Fecha
             </th>
             <th>
               Estado
             </th>
             <th>
-              Scope
-            </th>
-            <th>
               Opciones
             </th>
           </tr>
-          <tr ng-repeat="user in users |  filter:search | filter :{status : true} ">
+          <tr ng-repeat="job in jobs |  filter:search | filter :{status : false} ">
             <td>
-              {{user.name}}
+              {{job.title}}
             </td>
             <td>
-              {{user.username}}
+              {{job.description}}
             </td>
             <td>
-              {{user.telephone}}
+              {{job.position}}
             </td>
             <td>
-              {{user.status}}
+              {{job.info}}
             </td>
             <td>
-              {{user.scope}}
+              {{job.cdate}}
+            </td>
+            <td>
+              {{job.status}}
             </td>
             <td>
               <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isAdmin()">
-                <button type="button" class="btn btn-default" ng-click="updateUser(user)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Modificar</button>
-                <button type="button" class="btn btn-default" ng-click="deleteUser(user)">Eliminar</button>
+                <button type="button" class="btn btn-default" ng-click="updateJob(job)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Modificar</button>
+                <button type="button" class="btn btn-default" ng-click="deleteJob(job)">Eliminar</button>
+              </div>
+              <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isRegular()">
+                <button type="button" class="btn btn-default" ng-click="updateJob(job)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Tomar</button>
+
               </div>
             </td>
           </tr>
@@ -159,44 +181,54 @@
     <table class="table table-striped">
       <tr>
         <th>
-          Nombre
+          Titulo
         </th>
         <th>
-          Usuario
+          Descripcion
         </th>
         <th>
-          Telefono
+          Cargo
+        </th>
+        <th>
+          Contacto
+        </th>
+        <th>
+          Fecha
         </th>
         <th>
           Estado
         </th>
         <th>
-          Scope
-        </th>
-        <th>
           Opciones
         </th>
       </tr>
-      <tr ng-repeat="user in users |  filter:search | filter :{status : false} ">
+      <tr ng-repeat="job in jobs |  filter:search | filter :{status : true} ">
         <td>
-          {{user.name}}
+          {{job.title}}
         </td>
         <td>
-          {{user.username}}
+          {{job.description}}
         </td>
         <td>
-          {{user.telephone}}
+          {{job.position}}
         </td>
         <td>
-          {{user.status}}
+          {{job.info}}
         </td>
         <td>
-          {{user.scope}}
+          {{job.cdate}}
+        </td>
+        <td>
+          {{job.status}}
         </td>
         <td>
           <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isAdmin()">
-            <button type="button" class="btn btn-default" ng-click="updateUser(user)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Modificar</button>
-            <button type="button" class="btn btn-default" ng-click="undeleteUser(user)">Activar</button>
+            <button type="button" class="btn btn-default" ng-click="updateJob(job)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Modificar</button>
+            <button type="button" class="btn btn-default" ng-click="deleteJob(job)">Eliminar</button>
+          </div>
+          <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isRegular()">
+            <button type="button" class="btn btn-default" ng-click="updateJob(job)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Tomar</button>
+
           </div>
         </td>
       </tr>
@@ -204,109 +236,66 @@
 
   </div>
 
-  <div ng-show="isNanny() ">
+
+  <div ng-show="isRegular()">
     <div class="media-body">
-      <h3 class="media-heading">Clientes Activos</h3>
+      <h3 class="media-heading">Trabajos Tomados</h3>
     </div>
     <table class="table table-striped">
       <tr>
         <th>
-          Nombre
+          Titulo
         </th>
         <th>
-          Usuario
+          Descripcion
         </th>
         <th>
-          Telefono
+          Cargo
+        </th>
+        <th>
+          Contacto
+        </th>
+        <th>
+          Fecha
         </th>
         <th>
           Estado
         </th>
         <th>
-          Scope
-        </th>
-        <th>
           Opciones
         </th>
       </tr>
-      <tr ng-repeat="user in users |  filter:{scope : 'regular'} | filter :{status : true} ">
+      <tr ng-repeat="job in jobs |  filter:search | filter :{status : true} ">
         <td>
-          {{user.name}}
+          {{job.title}}
         </td>
         <td>
-          {{user.username}}
+          {{job.description}}
         </td>
         <td>
-          {{user.telephone}}
+          {{job.position}}
         </td>
         <td>
-          {{user.status}}
+          {{job.info}}
         </td>
         <td>
-          {{user.scope}}
+          {{job.cdate}}
+        </td>
+        <td>
+          {{job.status}}
         </td>
         <td>
           <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isAdmin()">
-            <button type="button" class="btn btn-default" ng-click="updateUser(user)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Modificar</button>
-            <button type="button" class="btn btn-default" ng-click="deleteUser(user)">Eliminar</button>
+            <button type="button" class="btn btn-default" ng-click="updateJob(job)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Modificar</button>
+            <button type="button" class="btn btn-default" ng-click="deleteJob(job)">Eliminar</button>
+          </div>
+          <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isRegular()">
+            <button type="button" class="btn btn-default" ng-click="updateJob(job)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Tomar</button>
+
           </div>
         </td>
       </tr>
     </table>
 
   </div>
-
-
-  <div ng-show="isRegular() ">
-    <div class="media-body">
-      <h3 class="media-heading">Nannys Activas</h3>
-    </div>
-    <table class="table table-striped">
-      <tr>
-        <th>
-          Nombre
-        </th>
-        <th>
-          Usuario
-        </th>
-        <th>
-          Telefono
-        </th>
-        <th>
-          Estado
-        </th>
-        <th>
-          Scope
-        </th>
-        <th>
-          Opciones
-        </th>
-      </tr>
-      <tr ng-repeat="user in users |  filter:{scope : 'nanny'} | filter :{status : true} ">
-        <td>
-          {{user.name}}
-        </td>
-        <td>
-          {{user.username}}
-        </td>
-        <td>
-          {{user.telephone}}
-        </td>
-        <td>
-          {{user.status}}
-        </td>
-        <td>
-          {{user.scope}}
-        </td>
-        <td>
-          <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isAdmin()">
-            <button type="button" class="btn btn-default" ng-click="updateUser(user)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Modificar</button>
-            <button type="button" class="btn btn-default" ng-click="deleteUser(user)">Eliminar</button>
-          </div>
-        </td>
-      </tr>
-    </table>
-
   </div>
-
-</div>
