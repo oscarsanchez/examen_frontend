@@ -1,7 +1,7 @@
 angular.module('AngularScaffold.Services').factory('HomeService', ['$http',
 	function($http){
 		$http.defaults.withCredentials = true;
-		var baseUrl = 'http://localhost:8000/';
+		var baseUrl = 'http://oscarsanchez-backend.herokuapp.com/';
 		return {
 				GetUsers: function(){
 					return $http.get(baseUrl + "v1/users");
