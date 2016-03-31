@@ -1,4 +1,5 @@
-var app = angular.module('AngularScaffold', ['ui.router', 'ngStorage', 'AngularScaffold.Services', 'AngularScaffold.Controllers']);
+var app = angular.module('AngularScaffold', ['ui.router', 'ngStorage', 'stpa.modal',
+    'ui.bootstrap','AngularScaffold.Services', 'AngularScaffold.Controllers']);
 
 angular.module('AngularScaffold.Controllers', []);
 angular.module('AngularScaffold.Services', []);
